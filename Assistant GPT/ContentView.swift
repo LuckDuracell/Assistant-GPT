@@ -33,7 +33,6 @@ struct ContentView: View {
     @State var promptCopy = ""
     
     func sendRequest(redo: Bool) {
-        withAnimation { messageLoading = true }
         var input = "Tell me a joke about dolphins"
         if !redo {
             if promptCopy == "" { promptCopy = "Say: You forgot to ask me a question!" }
@@ -114,6 +113,7 @@ struct ContentView: View {
                                 promptCopy = prompt
                                 prompt = ""
                                 sending = true
+                                messageLoading = true
                             }
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                                 sendRequest(redo: false)
